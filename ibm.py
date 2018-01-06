@@ -1,4 +1,5 @@
 import json
+import yaml
 from watson_developer_cloud import PersonalityInsightsV3
 import twitterscraper
 from datetime import datetime
@@ -22,18 +23,21 @@ def fetch_tweets(username):
         }
         content_items['contentItems'].append(item)
 
-    print(content_items)
+    return content_items
 
 
-def personality_insights(username, password, data):
+def personality_insights(data):
+    with open('creds.yaml') as file:
+        creds = yaml.load(file)
+
     insights = PersonalityInsightsV3(
         version='2016-10-20',
-        username='YOUR SERVICE USERNAME',
-        password='YOUR SERVICE PASSWORD')
+        username=creds['IBM']['ServiceUsername'],
+        password=creds['IBM']['ServicePassword'])
 
-    profile = personality_insights.profile(data, content_type='application/json',
-                                           raw_scores=True, consumption_preferences=True)
+    profile = insights.profile(data, content_type='application/json',
+                                           raw_scores=False, consumption_preferences=True)
     print(json.dumps(profile, indent=2))
 
 
-fetch_tweets('SkullTech101')
+personality_insights(fetch_tweets('SkullTech101'))
