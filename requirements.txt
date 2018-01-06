@@ -3,3 +3,4 @@ facebook-sdk
 watson-developer-cloud
 pyyaml
 python-dateutil
+requests
