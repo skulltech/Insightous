@@ -2,3 +2,4 @@ python-twitter
 facebook-sdk
 watson-developer-cloud
 pyyaml
+python-dateutil
