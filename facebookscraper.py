@@ -30,3 +30,6 @@ def facebookscraper(user_access_token, user_id="me"):
 	        posts = requests.get(posts['paging']['next']).json()
 	    except KeyError:
 	        break
+
+# app access token can't be used to get posts out of a facebook page;
+# user access token can't be obtained using credentials, through APIs 
