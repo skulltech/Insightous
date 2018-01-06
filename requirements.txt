@@ -1,2 +1,3 @@
 python-twitter
 facebook-sdk
+watson-developer-cloud
