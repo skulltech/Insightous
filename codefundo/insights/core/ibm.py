@@ -37,7 +37,7 @@ def personality_insights(data):
 
     profile = insights.profile(data, content_type='application/json',
                                            raw_scores=False, consumption_preferences=True)
-    print(json.dumps(profile, indent=2))
+    return json.dumps(profile, indent=2)
 
 
-personality_insights(fetch_tweets('SkullTech101'))
+# personality_insights(fetch_tweets('SkullTech101'))
