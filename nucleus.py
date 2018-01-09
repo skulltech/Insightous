@@ -8,17 +8,15 @@ from urllib.parse import quote_plus
 
 
 
-def credentials(key, secret):
-    creds = quote_plus(key) + ':' + quote_plus(secret)
-    return base64.b64encode(creds.encode()).decode()
-
-
-def bearer_token():
+def get_token():
     with open('creds.yaml') as file:
         creds = yaml.load(file)
 
+    credentials = quote_plus(creds['Twitter']['ConsumerKey']) + ':' + quote_plus(creds['Twitter']['ConsumerSecret'])
+    credentials = base64.b64encode(credentials.encode()).decode()
+
     headers = {
-        'Authorization': 'Basic {}'.format(credentials(creds['Twitter']['ConsumerKey'], creds['Twitter']['ConsumerSecret'])),
+        'Authorization': 'Basic {}'.format(credentials),
         'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
         'User-Agent': 'CodeFunDo-VAS App'
     }
@@ -26,8 +24,8 @@ def bearer_token():
     return response.json()['access_token']
 
 
-def timeline(username):
-    token = bearer_token()
+def timeline(username, token=None):
+    token = token or get_token()
     payload = {
         'screen_name': username,
         'include_rts': True,
@@ -37,8 +35,8 @@ def timeline(username):
     return response.json()
 
 
-def personality_insights(username):
-    tweets = timeline(username)
+def personality_insights(username, token=None):
+    tweets = timeline(username, token)
     content_items = {}
     content_items['contentItems'] = []
 
