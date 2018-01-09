@@ -40,4 +40,4 @@ def personality_insights(data):
     return json.dumps(profile, indent=2)
 
 
-# personality_insights(fetch_tweets('SkullTech101'))
+print(personality_insights(fetch_tweets('SkullTech101')))
