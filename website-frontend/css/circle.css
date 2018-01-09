@@ -890,6 +890,66 @@
 .c100.red.dark:hover > span {
   color: #ff1000;
 }
+.c100.lightgreen .bar, .c100.lightgreen .fill {
+  border-color: #61ff00 !important;
+}
+.c100.lightgreen:hover > span {
+  color: #61ff00;
+}
+.c100.lightgreen.dark .bar, .c100.lightgreen.dark .fill {
+  border-color: #61ff00 !important;
+}
+.c100.lightgreen.dark:hover > span {
+  color: #61ff00;
+}
+.c100.purple .bar, .c100.purple .fill {
+  border-color: #6600ff !important;
+}
+.c100.purple:hover > span {
+  color: #6600ff;
+}
+.c100.purple.dark .bar, .c100.purple.dark .fill {
+  border-color: #6600ff !important;
+}
+.c100.purple.dark:hover > span {
+  color: #6600ff;
+}
+.c100.pink .bar, .c100.pink .fill {
+  border-color: #ff00e1 !important;
+}
+.c100.pink:hover > span {
+  color: #ff00e1;
+}
+.c100.pink.dark .bar, .c100.pink.dark .fill {
+  border-color: #ff00e1 !important;
+}
+.c100.pink.dark:hover > span {
+  color: #ff00e1;
+}
+.c100.turqouise .bar, .c100.turqouise .fill {
+  border-color: #00ffb6 !important;
+}
+.c100.turqouise:hover > span {
+  color: #00ffb6;
+}
+.c100.turqouise.dark .bar, .c100.turqouise.dark .fill {
+  border-color: #00ffb6 !important;
+}
+.c100.turqouise.dark:hover > span {
+  color: #00ffb6;
+}
+.c100.lightyellow .bar, .c100.lightyellow .fill {
+  border-color: #ffb600 !important;
+}
+.c100.lightyellow:hover > span {
+  color: #ffb600;
+}
+.c100.lightyellow.dark .bar, .c100.lightyellow.dark .fill {
+  border-color: #ffb600 !important;
+}
+.c100.lightyellow.dark:hover > span {
+  color: #ffb600;
+}
 .c100.yellow .bar, .c100.yellow .fill {
   border-color: #ffee00 !important;
 }
