@@ -1,10 +1,10 @@
 import json
 import yaml
-from watson_developer_cloud import PersonalityInsightsV3
-from dateutil import parser
-import requests
 import base64
+import requests
+from dateutil import parser
 from urllib.parse import quote_plus
+from watson_developer_cloud import PersonalityInsightsV3
 
 
 
@@ -60,8 +60,14 @@ def personality_insights(username, token=None):
         password=creds['IBM']['ServicePassword'])
 
     profile = insights.profile(content_items, content_type='application/json', raw_scores=False, consumption_preferences=True)
-    return json.dumps(profile, indent=2)
+    return profile
 
 
+def main():
+    username = input('[*] Enter the Twitter screen name: ')
+    profile = personality_insights(username)
+    print(json.dumps(profile, indent=2))
 
-print(personality_insights('SkullTech101'))
+
+if __name__='__main__':
+    main()
