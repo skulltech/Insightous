@@ -1,7 +1,5 @@
-python-twitter
-facebook-sdk
 watson-developer-cloud
 pyyaml
 python-dateutil
 requests
-django-allauth
+flask
