@@ -12,16 +12,16 @@ def percentage(percentile):
 app.jinja_env.globals.update(percentage=percentage) 
 
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def insights():
     if not 'token' in session:
         session['token'] = nucleus.get_token()
 
     if request.method == 'POST':
-        person = nucleus.personality_insights(request.form['username'], request.session['token'])
-        return render_template('insights.html', person=person)
+        person = nucleus.personality_insights(request.form['username'], session['token'])
+        return render_template('index.html', person=person)
 
-    return render_template('index.html', person=nucleus.personality_insights('SkullTech101'))
+    return render_template('index.html', person=None)
 
 
 @app.route('/inside')

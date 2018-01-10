@@ -1,127 +1,46 @@
 {% extends "base.html" %}
-{% set active_page = 'index' %}
-
-{% block title %}Home{% endblock %}
 {% block content %}
-
-		<section id="intro">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 text-center">
-						<div class="intro animate-box">
-							<h1>INSIGHTOUS</h1>
-							<h3>Who are you, when no-one is watching.</h3>
-						</div>
-					</div>
-				</div>
-			<div>
-		</section>
-		<section id="work">
-			<hr>
-			<center><h1>Personality</h1></center>
-			<center>
-				<div class="clearfix" style="margin-left: 5%;margin-right: 5%;">
-				{% for p in person['personality'] %}
-					<div class="c100 p{{ percentage(p['percentile']) }}" id="gap_circle">
-	                    <span>{{ percentage(p['percentile']) }}%</span>
-	                    <div class="slice">
-	                        <div class="bar"></div>
-	                        <div class="fill"></div>
-	                    </div>
-	                    <p style="margin-top: 100%;">{{ p['name'] }}</p>
-	                </div>
-				{% endfor %}
-			<br>
-			
-			{% for p in person['personality'] %}
-            <h3 style="margin-left: 8%;">{{ p['name'] }}</h3>
-			<center>
-				<div class="clearfix" style="margin-left: 5%;margin-right: 5%;">
-				{% for child in p['children'] %}
-	                <div class="c100 p{{ percentage(child['percentile']) }} small" id="gap_circle">
-	                    <span>{{ percentage(child['percentile']) }}%</span>
-	                    <div class="slice">
-	                        <div class="bar"></div>
-	                        <div class="fill"></div>
-	                    </div>
-	                    <p style="margin-top: 100%;">{{ child['name'] }}</p>
-					</div>
-				{% endfor %}
-	            </div>
-            </center>
-			<br>
-			{% endfor %}
-            <hr>
-			<br>
-			
-
-            <center><h1 style="margin-top: 3%;">Needs</h1></center>
-			<center>
-				<div class="clearfix" style="margin-left: 5%;margin-right: 5%;">
-				{% for need in person['needs'] %}
-	                <div class="c100 p{{ percentage(need['percentile']) }} pink" id="gap_circle">
-	                    <span>{{ percentage(need['percentile']) }}%</span>
-	                    <div class="slice">
-	                        <div class="bar"></div>
-	                        <div class="fill"></div>
-	                    </div>
-	                    <p style="margin-top: 100%;">{{ need['name'] }}</p>
-					</div>
-					{% endfor %}
-	            </div>
-	        </center>
-	            
+{% if person %}
+<!-- Example row of columns -->
+        <div class="row">
+          <div class="col-md-4">
+            <h2>Personality</h2>
             <br>
             <hr>
-            <center><h1 style="margin-top: 5%;">Values</h1></center>
-			<center>
-				<div class="clearfix" style="margin-left: 5%;margin-right: 5%;">
-					{% for value in person['values'] %}
-					<div class="c100 p{{ percentage(value['percentile']) }}" id="gap_circle">
-	                    <span>{{ percentage(value['percentile']) }}%</span>
-	                    <div class="slice">
-	                        <div class="bar"></div>
-	                        <div class="fill"></div>
-	                    </div>
-	                    <p style="margin-top: 100%;">{{ value['name'] }}</p>
-					</div>
-					{% endfor %}
-	            </div>
-            </center>
-		</section>
+            {% for p in person['personality'] %}
+            <p> {{ p['name'] }}
+            <div class="progress">
+              {% set percent = percentage(p['percentile']) -%}
+              <div class="progress-bar" role="progressbar" style="width: {{ percent }}%;" aria-valuenow="{{ percent }}" aria-valuemin="0" aria-valuemax="100"><!-- {{ percent }}% --></div>
+            </div>
+            {% endfor %}
+          </div>
 
-		<section id="services">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-4 animate-box">
-						<div class="service">
-							<div class="service-icon">
-								<i class="icon-command"></i>
-							</div>
-							<h2>CodeFunDo'18</h2>	
-							<p>This project is developed for CodeFunDo organized in Jan'18 by Microsoft.</p>
-						</div>
-					</div>
-					<div class="col-md-4 animate-box">
-						<div class="service">
-							<div class="service-icon">
-								<i class="icon-drop2"></i>
-							</div>
-							<h2>Insightous</h2>
-							<p>It takes all your twitter posts and describes your Personalty Insights.</p>
-						</div>
-					</div>
-					<div class="col-md-4 animate-box">
-						<div class="service">
-							<div class="service-icon">
-								<i class="icon-anchor"></i>
-							</div>
-							<h2>Thanks to-</h2>
-							<p></p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
+          <div class="col-md-4">
+            <h2>Needs</h2>
+            <br>
+            <hr>
+            {% for need in person['needs'] %}
+            <p> {{ need['name'] }}
+            <div class="progress">
+              {% set percent = percentage(need['percentile']) -%}
+              <div class="progress-bar" role="progressbar" style="width: {{ percent }}%;" aria-valuenow="{{ percent }}" aria-valuemin="0" aria-valuemax="100"><!-- {{ percent }}% --></div>
+            </div>
+            {% endfor %}
+          </div>
 
+          <div class="col-md-4">
+            <h2>Values</h2>
+            <br>
+            <hr>
+            {% for value in person['values'] %}
+            <p> {{ value['name'] }}
+            <div class="progress">
+              {% set percent = percentage(value['percentile']) -%}
+              <div class="progress-bar" role="progressbar" style="width: {{ percent }}%;" aria-valuenow="{{ percent }}" aria-valuemin="0" aria-valuemax="100"><!-- {{ percent }}% --></div>
+            </div>
+            {% endfor %}
+          </div>
+
+{% endif %}
 {% endblock %}
