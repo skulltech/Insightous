@@ -7,6 +7,11 @@ app = Flask(__name__)
 app.secret_key = 'super secret key'
 
 
+def percentage(percentile):
+    return int(percentile * 100)
+app.jinja_env.globals.update(percentage=percentage) 
+
+
 @app.route('/')
 def insights():
     if not 'token' in session:
@@ -16,7 +21,7 @@ def insights():
         person = nucleus.personality_insights(request.form['username'], request.session['token'])
         return render_template('insights.html', person=person)
 
-    return render_template('index.html', person=None)
+    return render_template('index.html', person=nucleus.personality_insights('SkullTech101'))
 
 
 @app.route('/inside')
